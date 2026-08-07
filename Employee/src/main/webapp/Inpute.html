@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Employee Leave Management System</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    min-height:100vh;
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #0f172a 0%,
+        #1e3a8a 50%,
+        #2563eb 100%
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    overflow:hidden;
+
+    position:relative;
+}
+
+
+/* =========================
+   BACKGROUND EFFECTS
+========================= */
+
+.circle-one{
+    position:absolute;
+
+    width:380px;
+    height:380px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.06);
+
+    top:-180px;
+    left:-120px;
+}
+
+.circle-two{
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.06);
+
+    bottom:-220px;
+    right:-120px;
+}
+
+.circle-three{
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.04);
+
+    top:20%;
+    right:8%;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+
+    width:920px;
+    max-width:94%;
+
+    position:relative;
+    z-index:5;
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.22);
+
+    border-radius:24px;
+
+    padding:42px 45px 28px;
+
+    text-align:center;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.30);
+
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+
+    width:76px;
+    height:76px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:35px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.20);
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+h1{
+
+    font-size:35px;
+
+    font-weight:700;
+
+    letter-spacing:0.3px;
+
+    margin-bottom:10px;
+
+    color:white;
+
+}
+
+
+.subtitle{
+
+    font-size:15px;
+
+    color:#dbeafe;
+
+    margin-bottom:8px;
+
+}
+
+
+.select-text{
+
+    font-size:14px;
+
+    color:#bfdbfe;
+
+    margin-top:25px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================
+   LOGIN CONTAINER
+========================= */
+
+.login-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+}
+
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.login-card{
+
+    background:#ffffff;
+
+    color:#111827;
+
+    border-radius:18px;
+
+    padding:28px 25px;
+
+    text-decoration:none;
+
+    display:block;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.15);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+.login-card:hover{
+
+    transform:translateY(-7px);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.25);
+
+}
+
+
+/* =========================
+   CARD ICON
+========================= */
+
+.card-icon{
+
+    width:64px;
+    height:64px;
+
+    margin:0 auto 16px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:29px;
+
+}
+
+
+/* ADMIN ICON */
+
+.admin .card-icon{
+
+    background:#fee2e2;
+
+}
+
+
+/* EMPLOYEE ICON */
+
+.employee .card-icon{
+
+    background:#dbeafe;
+
+}
+
+
+/* =========================
+   CARD TITLE
+========================= */
+
+.login-card h2{
+
+    font-size:20px;
+
+    margin-bottom:9px;
+
+    color:#111827;
+
+}
+
+
+/* =========================
+   CARD DESCRIPTION
+========================= */
+
+.login-card p{
+
+    min-height:42px;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-button{
+
+    width:100%;
+
+    padding:12px 15px;
+
+    border-radius:9px;
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+
+}
+
+
+/* ADMIN BUTTON */
+
+.admin .login-button{
+
+    background:#dc3545;
+
+}
+
+
+.admin:hover .login-button{
+
+    background:#bb2d3b;
+
+}
+
+
+/* EMPLOYEE BUTTON */
+
+.employee .login-button{
+
+    background:#2563eb;
+
+}
+
+
+.employee:hover .login-button{
+
+    background:#1d4ed8;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    margin-top:28px;
+
+    padding-top:18px;
+
+    border-top:1px solid rgba(255,255,255,0.18);
+
+    color:#bfdbfe;
+
+    font-size:12px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:750px){
+
+    body{
+        overflow:auto;
+        padding:25px 0;
+    }
+
+    .container{
+
+        padding:32px 20px 25px;
+
+    }
+
+    h1{
+
+        font-size:27px;
+
+    }
+
+    .login-container{
+
+        grid-template-columns:1fr;
+
+        gap:16px;
+
+    }
+
+    .login-card{
+
+        padding:25px 20px;
+
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:450px){
+
+    h1{
+
+        font-size:23px;
+
+        line-height:1.3;
+
+    }
+
+    .subtitle{
+
+        font-size:13px;
+
+    }
+
+    .select-text{
+
+        font-size:13px;
+
+    }
+
+    .logo{
+
+        width:65px;
+        height:65px;
+
+        font-size:30px;
+
+    }
+
+    .card-icon{
+
+        width:58px;
+        height:58px;
+
+        font-size:26px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- BACKGROUND CIRCLES -->
+
+<div class="circle-one"></div>
+
+<div class="circle-two"></div>
+
+<div class="circle-three"></div>
+
+
+
+<!-- MAIN CONTAINER -->
+
+<div class="container">
+
+
+    <!-- SYSTEM LOGO -->
+
+    <div class="logo">
+        🏢
+    </div>
+
+
+    <!-- SYSTEM TITLE -->
+
+    <h1>
+        Employee Leave Management System
+    </h1>
+
+
+    <p class="subtitle">
+        Smart &amp; Simple Leave Management Solution
+    </p>
+
+
+    <p class="select-text">
+        Select your login type to continue
+    </p>
+
+
+
+    <!-- LOGIN OPTIONS -->
+
+    <div class="login-container">
+
+
+        <!-- =====================
+             ADMIN LOGIN
+        ====================== -->
+
+        <a href="AdminLogin.html"
+           class="login-card admin">
+
+            <div class="card-icon">
+                👨‍💼
+            </div>
+
+            <h2>
+                Admin Login
+            </h2>
+
+            <p>
+                Manage employees, review leave requests,
+                approve or reject applications and view reports.
+            </p>
+
+            <div class="login-button">
+                Login as Admin &nbsp; →
+            </div>
+
+        </a>
+
+
+
+        <!-- =====================
+             EMPLOYEE LOGIN
+        ====================== -->
+
+        <a href="EmployeeLogin.html"
+           class="login-card employee">
+
+            <div class="card-icon">
+                👤
+            </div>
+
+            <h2>
+                Employee Login
+            </h2>
+
+            <p>
+                Apply for leave, check leave status,
+                view leave history and manage your profile.
+            </p>
+
+            <div class="login-button">
+                Login as Employee &nbsp; →
+            </div>
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        © 2026 Employee Leave Management System
+
+        <br>
+
+        All Rights Reserved
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
